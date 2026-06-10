@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>Power Grid (Alta Tensión) — StartUB!</title>
+<style>
+  :root{
+    --blau:#03b3e4; --blau-fosc:#0a7ba6; --gris:#52616b; --gris-clar:#f2f4f5;
+    --vora:#dfe3e6; --groc:#fbb908; --verd:#87c7a4; --porpra:#6d4f9a;
+    --tema:#03b3e4; --tema-fosc:#0a7ba6;   /* per defecte; cada joc el sobreescriu segons el grup */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Paralucent Text","Avenir Next","Avenir","Futura","Helvetica Neue",Arial,sans-serif;
+       color:var(--gris);background:#6a7079;line-height:1.45;}
+  .page{width:210mm;min-height:297mm;margin:10mm auto;background:#fff;
+        box-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;flex-direction:column;}
+
+  /* Capçalera corporativa */
+  header{background:var(--blau);color:#fff;display:flex;justify-content:space-between;
+         align-items:center;padding:11mm 14mm 9mm;}
+  .logo svg{height:13mm;width:auto;display:block;}
+  .pilar{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:3px;
+         text-transform:uppercase;font-weight:300;}
+  .pilar .dot{width:10px;height:10px;background:#fff;border-radius:50%;}
+
+  /* Títol */
+  .titlewrap{padding:9mm 14mm 0;}
+  .cat{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--tema-fosc);
+       font-weight:700;margin-bottom:5px;}
+  h1{font-size:38px;color:#2b333a;line-height:1.04;font-weight:700;letter-spacing:-.5px;}
+  .tagline{font-size:13.5px;color:var(--gris);margin-top:7px;font-weight:300;max-width:88%;}
+
+  /* Línia divisòria de marca */
+  .rule{height:3px;background:var(--tema);margin:0 14mm;}
+
+  /* Stats */
+  .stats{display:flex;margin:7mm 14mm 0;border:1px solid var(--vora);border-radius:4px;overflow:hidden;}
+  .stat{flex:1;text-align:center;padding:9px 6px;border-right:1px solid var(--vora);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-size:18px;font-weight:700;color:var(--blau-fosc);}
+  .stat .lab{font-size:8.5px;text-transform:uppercase;letter-spacing:.8px;margin-top:3px;}
+
+  /* Cos */
+  .body{display:flex;gap:16px;padding:8mm 14mm 0;flex:1;}
+  .main{flex:1.55;} .side{flex:1;}
+  section{margin-bottom:13px;}
+  h2{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tema-fosc);
+     padding-bottom:5px;margin-bottom:8px;border-bottom:1.5px solid var(--tema);}
+  p{font-size:11.2px;margin-bottom:6px;text-align:justify;}
+  p.lead{font-size:12px;color:#363d44;}
+
+  .lab-tags{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--gris);
+            font-weight:700;margin:8px 0 4px;}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;}
+  .tag{font-size:10px;padding:3px 10px;border-radius:14px;font-weight:600;}
+  .tag.a{background:color-mix(in srgb,var(--tema) 14%,#fff);color:var(--tema-fosc);
+         border:1px solid color-mix(in srgb,var(--tema) 32%,#fff);}
+  .tag.s{background:var(--gris-clar);color:var(--gris);border:1px solid var(--vora);}
+
+  ul{list-style:none;font-size:11px;}
+  ul li{padding-left:15px;position:relative;margin-bottom:5px;}
+  ul li:before{content:"";position:absolute;left:0;top:5px;width:7px;height:7px;
+               background:var(--tema);border-radius:50%;}
+
+  .box{background:var(--gris-clar);border-radius:6px;padding:10px 13px;margin-bottom:12px;}
+  .box h3{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--tema-fosc);
+          border-bottom:1.5px solid var(--vora);padding-bottom:4px;margin-bottom:8px;}
+  .kv{display:flex;font-size:10.3px;margin-bottom:5px;}
+  .kv:last-child{margin-bottom:0;}
+  .kv .k{width:84px;flex-shrink:0;color:var(--gris);}
+  .kv .v{font-weight:600;color:#2b333a;}
+  .resources{font-size:9.8px;}
+  .resources .k{width:72px;}
+  .resources a{color:var(--blau-fosc);text-decoration:none;word-break:break-word;}
+
+  .hl{border-radius:6px;padding:9px 12px;margin-bottom:12px;display:flex;gap:9px;align-items:center;}
+  .hl .ic{font-size:19px;line-height:1;flex-shrink:0;}
+  .hl .txt{font-size:10px;line-height:1.3;}
+  .hl .txt b{display:block;font-size:11px;}
+  .hl.gold{background:#fff6e0;border:1px solid #f6dd9a;color:#8a6400;}
+  .hl.gold .txt b{color:#5e4400;}
+  .hl.green{background:#ecf6f0;border:1px solid #c3e3d1;color:#3c7a5a;}
+  .hl.green .txt b{color:#28543d;}
+  .hl.purple{background:#f0ecf6;border:1px solid #d3c7e6;color:#5a3f86;}
+  .hl.purple .txt b{color:#3f2c61;}
+  .hl.blue{background:#e6f7fc;border:1px solid #bce9f7;color:var(--blau-fosc);}
+
+  footer{margin-top:auto;background:var(--gris);color:#fff;padding:8px 14mm;
+         font-size:9px;letter-spacing:.5px;display:flex;justify-content:space-between;align-items:center;}
+  footer .fr{text-transform:uppercase;letter-spacing:2px;font-weight:300;opacity:.85;}
+
+  @page{size:A4;margin:0;}
+  @media print{
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;width:auto;min-height:auto;}
+    header,footer,.hl,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+  <div class="page" style="--tema:#fbb908;--tema-fosc:#a07400;">
+
+    <header>
+      <div class="logo"><svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	  viewBox="245.4 242.7 352.0 109.6" overflow="visible" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#FFFFFF" d="M258.8,333.5l-1.2,0.1l-0.2,0.2v6.1c0,2.3,0.9,3.3,3.1,3.3c2.2,0,3.1-0.9,3.1-3.3v-6l-0.2-0.3l-1.2-0.1
+			v-0.8h4v0.8l-1.2,0.1l-0.2,0.3v6.1c0,3-1.4,4.3-4.7,4.3c-3.3,0-4.7-1.3-4.7-4.3v-6.3l-0.2-0.2l-1.1-0.1v-0.8h4.7V333.5z"/>
+		<polygon fill="#FFFFFF" points="280.1,333.9 279.8,333.7 278.7,333.5 278.7,332.7 282.6,332.7 282.6,333.5 281.5,333.7 
+			281.2,333.9 281.2,343 282.1,344.2 279.9,344.2 273.5,335 273.5,343 273.7,343.2 274.9,343.3 274.9,344.2 270.9,344.2 
+			270.9,343.3 272,343.2 272.3,343 272.3,333.8 272.1,333.6 270.8,333.5 270.8,332.7 274.4,332.7 274.4,333.2 280.1,341.3 		"/>
+		<polygon fill="#FFFFFF" points="292.4,333.5 291.2,333.6 291,333.8 291,343.1 291.2,343.2 292.4,343.3 292.4,344.2 287.6,344.2 
+			287.6,343.3 288.8,343.2 289,343.1 289,333.8 288.8,333.6 287.6,333.5 287.6,332.7 292.4,332.7 		"/>
+		<polygon fill="#FFFFFF" points="296.9,333.7 295.8,333.5 295.8,332.7 300.3,332.7 300.3,333.5 299.2,333.6 299.1,333.8 
+			302.4,342.1 305.6,333.8 305.5,333.6 304.3,333.5 304.3,332.7 307.9,332.7 307.9,333.5 306.8,333.7 302.7,344.3 301.1,344.3 		"/>
+		<polygon fill="#FFFFFF" points="320.7,335.3 319.4,335.3 319.1,333.8 318.9,333.6 315,333.6 315,337.7 317.7,337.7 318,337.6 
+			318.2,336.3 319.2,336.3 319.2,340.1 318.2,340.1 318,338.8 317.7,338.7 315,338.7 315,343.2 319.5,343.2 319.8,343.1 
+			320.2,341.1 321.3,341.1 321.3,344.2 311.8,344.2 311.8,343.3 312.9,343.2 313.1,343.1 313.1,333.8 312.9,333.6 311.8,333.5 
+			311.8,332.7 320.7,332.7 		"/>
+		<path fill="#FFFFFF" d="M330.9,332.7c3,0,4.5,1,4.5,3.1c0,1.5-0.9,2.4-2.8,2.9c1.4,0.4,1.8,0.9,2.3,3c0.4,1.4,0.8,1.8,2.3,1.8h0.4
+			v0.8c-0.7,0.1-1.2,0.2-1.7,0.2c-1.7,0-2.3-0.6-3-2.8c-0.6-2-1.1-2.4-2.8-2.4c-0.3,0-0.4,0-0.7,0v3.9l0.2,0.2l1.1,0.1v0.8h-4.6
+			v-0.8l1.1-0.1l0.2-0.2v-9.3l-0.2-0.2l-1.1-0.1v-0.8H330.9z M329.5,338.2c0.3,0,0.5,0,0.8,0c2.1,0,3-0.7,3-2.3
+			c0-1.6-0.9-2.3-3.1-2.3h-0.7V338.2z"/>
+		<path fill="#FFFFFF" d="M342.2,340.6h1.3l0.2,2.1l0.2,0.3c0.8,0.2,1.3,0.3,1.9,0.3c1.6,0,2.6-0.7,2.6-1.9c0-0.7-0.3-1.1-0.9-1.5
+			c-0.3-0.2-0.4-0.3-2.1-1c-2.3-0.9-3-1.6-3-3.1c0-2.1,1.7-3.4,4.3-3.4c1.1,0,1.9,0.1,3.2,0.5v2.9h-1.2l-0.3-1.8l-0.2-0.3
+			c-0.6-0.2-1-0.3-1.5-0.3c-1.4,0-2.3,0.7-2.3,1.9c0,1,0.5,1.4,2.8,2.3c1.4,0.5,1.8,0.8,2.4,1.2c0.5,0.5,0.8,1.2,0.8,2
+			c0,2.1-1.9,3.5-4.9,3.5c-1.3,0-2.2-0.1-3.3-0.6V340.6z"/>
+		<polygon fill="#FFFFFF" points="361,333.5 359.8,333.6 359.6,333.8 359.6,343.1 359.8,343.2 361,343.3 361,344.2 356.2,344.2 
+			356.2,343.3 357.4,343.2 357.7,343.1 357.7,333.8 357.4,333.6 356.2,333.5 356.2,332.7 361,332.7 		"/>
+		<polygon fill="#FFFFFF" points="367.4,333.8 367,335.6 365.9,335.6 365.9,332.7 376.2,332.7 376.2,335.6 375.1,335.6 374.8,333.8 
+			374.5,333.6 372,333.6 372,343.1 372.2,343.2 373.5,343.3 373.5,344.2 368.6,344.2 368.6,343.3 369.9,343.2 370.1,343.1 
+			370.1,333.6 367.6,333.6 		"/>
+		<path fill="#FFFFFF" d="M385.5,332.5l4.3,10.6l1.1,0.2v0.8h-4.4v-0.8l1.1-0.1l0.1-0.2l-1.3-3.2h-4.2l-1.2,3.2l0.1,0.2l1.2,0.1v0.8
+			h-3.5v-0.8l1.1-0.2l4.2-10.6H385.5z M382.6,338.9h3.4l-1.7-4.3L382.6,338.9z"/>
+		<polygon fill="#FFFFFF" points="394.9,333.8 394.6,335.6 393.4,335.6 393.4,332.7 403.8,332.7 403.8,335.6 402.6,335.6 
+			402.3,333.8 402.1,333.6 399.6,333.6 399.6,343.1 399.8,343.2 401.1,343.3 401.1,344.2 396.2,344.2 396.2,343.3 397.4,343.2 
+			397.6,343.1 397.6,333.6 395.1,333.6 		"/>
+		<path fill="#FFFFFF" d="M444.1,343.4l1.2-0.1l0.2-0.2v-9.3l-0.2-0.2l-1.2-0.1v-0.8h4.9c2.9,0,4.4,1,4.4,2.8c0,1.3-0.8,2.1-2.4,2.6
+			c2,0.1,3.2,1.2,3.2,2.8c0,2.1-1.9,3.3-5,3.3h-5.1V343.4z M447.5,337.9c0.5,0,0.6,0,0.7,0c2,0,3-0.8,3-2.2c0-1.3-0.9-2-2.8-2
+			c-0.2,0-0.4,0-0.9,0V337.9z M447.5,343.2c0.6,0,1,0,1.2,0c2.3,0,3.3-0.7,3.3-2.3c0-1.5-0.9-2.2-2.9-2.2c-0.4,0-0.8,0-1.6,0.1
+			V343.2z"/>
+		<path fill="#FFFFFF" d="M465.9,332.6l4.5,10.6l1.1,0.2v0.8h-4.6v-0.8l1.2-0.1l0.1-0.2l-1.3-3.2h-4.3l-1.3,3.2l0.1,0.2l1.3,0.1v0.8
+			h-3.7v-0.8l1.1-0.2l4.4-10.6H465.9z M462.9,338.9h3.5l-1.8-4.3L462.9,338.9z"/>
+		<path fill="#FFFFFF" d="M481.4,332.7c3.1,0,4.7,1,4.7,3.1c0,1.5-0.9,2.4-2.9,2.9c1.5,0.4,1.9,0.9,2.4,3c0.4,1.4,0.9,1.8,2.4,1.8
+			h0.4v0.8c-0.7,0.1-1.2,0.2-1.7,0.2c-1.8,0-2.4-0.6-3.1-2.8c-0.6-2-1.1-2.4-2.9-2.4c-0.3,0-0.4,0-0.8,0v3.9l0.2,0.2l1.2,0.1v0.8
+			h-4.8v-0.8l1.2-0.1l0.2-0.2v-9.3l-0.2-0.2l-1.2-0.1v-0.8H481.4z M479.9,338.2c0.3,0,0.5,0,0.8,0c2.2,0,3.1-0.7,3.1-2.3
+			c0-1.6-0.9-2.3-3.2-2.3h-0.7V338.2z"/>
+		<path fill="#FFFFFF" d="M503.6,343.8c-1.6,0.4-2.7,0.6-4,0.6c-3.8,0-6.5-2.5-6.5-6c0-3.5,2.7-5.9,6.6-5.9c1.2,0,2.4,0.2,3.9,0.6
+			v2.9h-1.2l-0.4-1.8l-0.3-0.3c-0.8-0.3-1.4-0.4-2.1-0.4c-2.6,0-4.2,1.9-4.2,4.8c0,3.1,1.8,4.9,4.7,4.9c0.6,0,1.1-0.1,1.6-0.3
+			l0.3-0.2l0.5-2h1.2V343.8z"/>
+		<polygon fill="#FFFFFF" points="519.3,335.4 518.1,335.4 517.7,333.9 517.5,333.7 513.5,333.7 513.5,337.8 516.3,337.8 
+			516.5,337.6 516.7,336.3 517.8,336.3 517.8,340.2 516.7,340.2 516.5,338.9 516.3,338.8 513.5,338.8 513.5,343.3 518.1,343.3 
+			518.5,343.1 518.8,341.2 520,341.2 520,344.3 510.1,344.3 510.1,343.4 511.2,343.3 511.5,343.1 511.5,333.9 511.2,333.7 
+			510.1,333.6 510.1,332.7 519.3,332.7 		"/>
+		<polygon fill="#FFFFFF" points="528.2,333.7 526.9,333.6 526.9,332.7 531.8,332.7 531.8,333.6 530.7,333.7 530.4,333.9 
+			530.4,343.3 534.3,343.3 534.7,343.1 535,340.9 536.2,340.9 536.2,344.3 526.9,344.3 526.9,343.4 528.2,343.3 528.4,343.1 
+			528.4,333.9 		"/>
+		<path fill="#FFFFFF" d="M553,338.5c0,3.6-2.6,6-6.2,6c-3.6,0-6.2-2.5-6.2-6c0-3.6,2.6-6.1,6.3-6.1C550.5,332.5,553,335,553,338.5
+			 M543,338.5c0,3,1.5,5,3.9,5s3.9-2,3.9-4.9c0-3.1-1.5-5-3.9-5C544.5,333.5,543,335.5,543,338.5"/>
+		<polygon fill="#FFFFFF" points="568.3,334 568.1,333.7 566.9,333.6 566.9,332.7 571,332.7 571,333.6 569.8,333.7 569.5,334 
+			569.5,343 570.4,344.3 568.2,344.3 561.4,335.1 561.4,343 561.7,343.3 562.9,343.4 562.9,344.3 558.8,344.3 558.8,343.4 
+			560,343.3 560.2,343 560.2,333.9 560,333.7 558.7,333.6 558.7,332.7 562.4,332.7 562.4,333.3 568.3,341.4 		"/>
+		<path fill="#FFFFFF" d="M582.2,332.6l4.5,10.6l1.1,0.2v0.8h-4.6v-0.8l1.2-0.1l0.1-0.2l-1.3-3.2h-4.3l-1.3,3.2l0.1,0.2l1.3,0.1v0.8
+			h-3.7v-0.8l1.1-0.2l4.4-10.6H582.2z M579.2,338.9h3.5l-1.8-4.3L579.2,338.9z"/>
+		<path fill="#FFFFFF" d="M417.8,335H414v0.5l0.8,0.1l0.2,0.2v5.9l-0.2,0.2l-0.8,0.1v0.5h3.7c3,0,4.7-1.3,4.7-3.7
+			C422.4,336.3,420.7,335,417.8,335 M417.5,341.7h-0.7v-6.2h0.7c2,0,2.9,1,2.9,3.1C420.4,340.7,419.4,341.7,417.5,341.7"/>
+		<polygon fill="#FFFFFF" points="425.5,342.3 432.4,342.3 432.4,340.4 431.5,340.4 431.3,341.6 431.1,341.7 428.3,341.7 
+			428.3,338.8 429.8,338.8 430,339 430.1,339.8 431,339.8 431,337.3 430.1,337.3 430,338.1 429.8,338.2 428.3,338.2 428.3,335.6 
+			430.7,335.6 430.8,335.7 430.8,335.7 431,336.7 432,336.7 432,335 425.5,335 425.5,335.5 426.3,335.6 426.5,335.7 426.5,341.6 
+			426.3,341.8 425.5,341.8 		"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M253.4,270c0.1,12.3,13.2,14.5,25.9,16.5c11.1,1.8,21.5,3.5,21.5,12c-0.2,10.3-9.9,12.9-18.5,13.3v6
+			c8.3-0.3,25-3,25-19.6c0-12.6-13.3-14.8-26.2-17l-0.1,0.5l0,0l0,0l0.1-0.5c-10.9-1.8-21.1-3.5-21.2-11.4c-0.1-8.3,6.3-13,18-13.2
+			v-5.9C262.2,251.2,253.3,258.2,253.4,270z"/>
+		<path fill="#FFFFFF" d="M276.8,311.8c-13.3-0.6-20.2-6.8-20.4-18.5l0-1h-6.5v1c0,19.4,14.6,24.1,26.9,24.5l1,0v-6L276.8,311.8z"/>
+		<path fill="#FFFFFF" d="M282.2,250.7v5.9c15.2,0.9,18.5,10,18.6,17.5l0,1h6.4v-1C307.2,259.9,298.1,251.4,282.2,250.7z"/>
+		<path fill="#FFFFFF" d="M326.1,309c-1.8-1.7-2.6-4.2-2.6-8v-49.8h-6.3v12.4l-6.2,0.7v5h6.2V301c0,5.5,1.4,9.5,4.1,12.1
+			c3.2,3.1,8.3,4.5,16.2,4.5c1.2,0,2.5,0,3.8-0.1l1,0v-5.8l-1.1,0.1C333.3,312.3,328.6,311.4,326.1,309z"/>
+		<rect x="328" y="263.6" fill="#FFFFFF" width="15.3" height="5.7"/>
+		<path fill="#FFFFFF" d="M365.5,263.1c-9,0.3-20.9,2.8-20.9,19.6v1h6.4v-1c0-9.4,4.2-13.5,14.5-14l0.7,0v-5.6L365.5,263.1z"/>
+		<path fill="#FFFFFF" d="M443.2,309c-1.8-1.7-2.6-4.2-2.6-8v-49.8h-6.3v12.4l-6.2,0.7v5h6.2V301c0,5.5,1.4,9.5,4.1,12.1
+			c3.2,3.1,8.3,4.5,16.2,4.5c1.2,0,2.5,0,3.8-0.1l1,0v-5.8l-1.1,0.1C450.4,312.3,445.7,311.4,443.2,309z"/>
+		<rect x="446.5" y="263.6" fill="#FFFFFF" width="13.9" height="5.7"/>
+		<path fill="#FFFFFF" d="M490.9,311.6c-14.2-0.5-20-7.7-20-24.8v-35.7h-6.6V287c0,20.7,8.2,30.2,26.6,30.7l0.5,0v-6.1L490.9,311.6z
+			"/>
+		<path fill="#FFFFFF" d="M515.1,286.8c0,16.9-5.6,24.1-19.4,24.8v6.1c17.9-0.7,25.9-10.2,25.9-30.7v-35.9h-6.5V286.8z"/>
+		<path fill="#FFFFFF" d="M586.4,307.8c-2.6,0-5.6,0.6-5.6,5c0,4.3,2.8,4.9,5.6,4.9c2.6,0,5.6-0.6,5.6-4.9
+			C592,308.4,589,307.8,586.4,307.8z"/>
+		<polygon fill="#FFFFFF" points="588.5,305.1 589.4,277.6 589.4,251.2 583.4,251.2 583.4,277.7 584.4,305.1 		"/>
+		<path fill="#FFFFFF" d="M403.3,270.5l-0.7-8h-4.5l0,24.8h6.5v0c0-7.8,1.3-12.4,4.2-15.3c2.9-2.8,7.5-4.1,14.4-4l1,0v-6l-1,0
+			C413.3,261.9,406.7,264.8,403.3,270.5z"/>
+		<polygon fill="#FFFFFF" points="398.2,317.2 404.6,317.2 404.6,291.8 398.2,291.8 		"/>
+		<path fill="#FFFFFF" d="M370.6,263.2v5.6c12.6,0.5,15.3,5.7,15.7,15l-20.6,2.8c-13.2,1.7-21.4,4.8-21.4,15.5
+			c0,9.8,7.6,15.6,20.3,15.6h1.5v-5.5l-1,0c-5.3,0-9.3-1.3-11.8-3.7c-1.7-1.7-2.6-3.9-2.6-6.6c0-5.7,3.8-8.2,15.1-9.7l20.3-2.7
+			l-0.2,3.8c-0.2,9.8-6,16.6-15.6,18.4v5.5c7.4-1.2,13.3-4.8,16.7-10.2l0.6,10.3h4.6v-30.5C392.6,271.9,389.1,263.8,370.6,263.2z"/>
+		<path fill="#FFFFFF" d="M568.1,283c6.2-2.9,7.6-9.2,7.6-14.2c0.1-5-1.3-9.1-4.2-12c-3.6-3.7-9.6-5.6-17.6-5.6h-3v5.9h3.1
+			c10.5,0,15.4,3.9,15.4,12.2c0,7.8-4.1,11.4-13,11.4H533v-23.6h13.5v-5.9h-20.1v66h20.1v-5.7H533v-25.2h23.6
+			c9.6,0,14.5,4.1,14.5,12.3c0,6.5-1.3,12.9-17.2,12.9h-3v5.7h2.8c16.5,0,23.9-5.7,23.9-18.5C577.6,291.2,574.2,285.6,568.1,283z"/>
+		<polygon fill="#FFFFFF" points="491.9,311.7 491.3,311.7 491.3,317.8 491.9,317.8 		"/>
+		<polygon fill="#FFFFFF" points="277.8,311.9 277.8,311.9 277.8,317.9 277.8,317.9 		"/>
+	</g>
+</g>
+</svg></div>
+    </header>
+
+    <div class="rule"></div>
+
+    <div class="titlewrap">
+      <div class="cat">Microeconomia i mercats</div>
+      <h1>Power Grid (Alta Tensión)</h1>
+      <p class="tagline">Companyies elèctriques competeixen per alimentar el màxim de ciutats en un mercat viu</p>
+    </div>
+
+    <div class="stats"><div class="stat"><div class="num">2–6</div><div class="lab">Jugadors</div></div><div class="stat"><div class="num">~120 min</div><div class="lab">Durada</div></div><div class="stat"><div class="num">~10 min</div><div class="lab">Preparació</div></div><div class="stat"><div class="num">Mitjana-alta</div><div class="lab">Complexitat</div></div><div class="stat"><div class="num">Competitiu</div><div class="lab">Dinàmica</div></div></div>
+
+    <div class="body">
+      <div class="main">
+        <section><h2>El joc</h2><p class=lead>Clàssic de gestió econòmica de Friedemann Friese (2004). Cada jugador dirigeix una companyia elèctrica que competeix per subministrar electricitat al màxim de ciutats.</p><p>El joc integra quatre subsistemes que interactuen ronda rere ronda: <strong>subhasta</strong> de centrals, <strong>mercat de matèries primeres amb preu dinàmic</strong> (el preu puja quan s'esgoten), <strong>construcció de xarxa</strong> sobre un mapa i gestió de tresoreria. És un model de mercat genuïnament rigorós.</p></section>
+        <section>
+          <h2>Què s'hi treballa</h2>
+          <div class="lab-tags">Àrees de coneixement</div>
+          <div class="tags"><span class="tag a">Economia de mercat (oferta i demanda)</span><span class="tag a">Gestió d'operacions i inversió</span></div>
+          <div class="lab-tags">Competències</div>
+          <div class="tags"><span class="tag s">Decisió sota incertesa</span><span class="tag s">Gestió de recursos</span><span class="tag s">Gestió del risc</span><span class="tag s">Estratègia competitiva</span></div>
+        </section>
+        <section><h2>Valor a l'aula</h2><ul><li><strong>Model de mercat especialment ric:</strong> integra subhastes, mercat de recursos amb preu endogen i xarxa en una sola partida.</li><li><strong>Oferta i demanda en directe:</strong> el preu dels recursos puja amb la compra i baixa amb la reposició; els estudiants «senten» l'escassetat.</li><li>L'<strong>ordre de torn invers</strong> és un bon exemple de mecanisme d'equilibri: qui lidera paga més car i tria després.</li><li>Sinergia amb altres jocs d'economia de mercat per a un mòdul de microeconomia.</li></ul></section>
+      </div>
+      <div class="side">
+        <div class="box"><h3>A l'aula</h3><div class="kv"><span class="k">Num. jugadors</span><span class="v">2–6</span></div><div class="kv"><span class="k">Per equips</span><span class="v">No</span></div><div class="kv"><span class="k">Game Master</span><span class="v">No</span></div><div class="kv"><span class="k">Sessions</span><span class="v">Sessió llarga (~2,5 h)</span></div><div class="kv"><span class="k">Espai</span><span class="v">Una taula gran</span></div><div class="kv"><span class="k">Material</span><span class="v">Joc físic</span></div></div>
+        <div class="hl gold"><span class="ic">★</span><span class="txt"><b>Referent dels jocs econòmics</b>«Gold standard» d'oferta i demanda</span></div>
+        <div class="box"><h3>Fitxa tècnica</h3><div class="kv"><span class="k">Disseny</span><span class="v">Friedemann Friese</span></div><div class="kv"><span class="k">Editorial</span><span class="v">2F-Spiele · Maldito (Alta Tensión)</span></div><div class="kv"><span class="k">Idiomes</span><span class="v">Castellà · Anglès</span></div><div class="kv"><span class="k">Edició</span><span class="v">Alta Tensión (ES)</span></div></div>
+        <div class="box resources"><h3>Per saber-ne més</h3><div class="kv"><span class="k">Context</span><span class="v"><a href="https://en.wikipedia.org/wiki/Power_Grid">Wikipedia</a></span></div><div class="kv"><span class="k">Regles</span><span class="v"><a href="https://www.ultraboardgames.com/power-grid/game-rules.php">Resum</a></span></div><div class="kv"><span class="k">Ressenya</span><span class="v"><a href="https://www.meeplemountain.com/reviews/power-grid/">Meeple Mountain</a></span></div><div class="kv"><span class="k">Fitxa BGG</span><span class="v"><a href="https://boardgamegeek.com/boardgame/2651/power-grid">boardgamegeek.com</a></span></div></div>
+      </div>
+    </div>
+
+    <footer>
+      <span class="fl">StartUB! · Universitat de Barcelona</span>
+    </footer>
+
+  </div>
+</body>
+</html>
