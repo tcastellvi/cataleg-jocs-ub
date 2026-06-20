@@ -13,10 +13,16 @@
  .intro h1{font-size:26px;color:#2b333a;font-weight:700;letter-spacing:-.3px;margin-bottom:6px;}
  .intro p{font-size:13.5px;max-width:760px;}
  .wrap{max-width:1180px;margin:18px auto 40px;padding:0 24px;display:flex;gap:24px;align-items:flex-start;}
- aside{width:212px;flex-shrink:0;position:sticky;top:16px;}
+ aside{width:230px;flex-shrink:0;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;padding-right:4px;}
  .fgroup{margin-bottom:16px;}
  .fgroup h3{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--blau-fosc);
             border-bottom:1.5px solid var(--vora);padding-bottom:4px;margin-bottom:8px;}
+ .asub{font-size:9.5px;font-weight:700;letter-spacing:.4px;color:var(--c,#52616b);margin:10px 0 5px;
+       display:flex;align-items:center;gap:5px;}
+ .asub:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,#9aa3ab);flex-shrink:0;}
+ .asub.asub-tv{color:#7a828a;}
+ .asub.asub-tv:before{background:#9aa3ab;}
+ .fareas .chips{margin-bottom:2px;}
  .chips{display:flex;flex-wrap:wrap;gap:6px;}
  .chip{border:1px solid var(--vora);background:#fff;color:var(--gris);font-size:12px;font-weight:600;
        padding:5px 11px;border-radius:16px;cursor:pointer;transition:all .12s;font-family:inherit;}
@@ -150,13 +156,24 @@
 
  <div class="intro">
    <h1>Jocs de taula per a l'aula universitària</h1>
-   <p>Aquest catàleg recull 34 jocs de taula seleccionats com a complement pedagògic. Cada joc té una fitxa amb el seu encaix temàtic i característiques. Filtra per tema,
+   <p>Aquest catàleg recull 37 jocs de taula seleccionats com a complement pedagògic. Cada joc té una fitxa amb el seu encaix temàtic i característiques. Filtra per àrea de coneixement,
    complexitat, durada o dinàmica i <strong>clica qualsevol joc per obrir-ne la fitxa</strong>.</p>
  </div>
 
  <div class="wrap">
    <aside>
-        <div class="fgroup"><h3>Tema</h3><div class="chips"><button class="chip tema" data-g="tema" data-v="HIS" style="--c:#6d4f9a">Història</button><button class="chip tema" data-g="tema" data-v="ECO" style="--c:#fbb908">Economia</button><button class="chip tema" data-g="tema" data-v="EMP" style="--c:#ec6907">Empresa i gestió</button><button class="chip tema" data-g="tema" data-v="NAT" style="--c:#87c7a4">C. Naturals</button></div></div>
+        <div class="fgroup fareas"><h3>Àrees de coneixement</h3>
+          <div class="asub" style="--c:#6d4f9a">Història, política i societat</div>
+          <div class="chips"><button class="chip tema" data-g="arees" data-v="Història militar" style="--c:#6d4f9a">Història militar</button><button class="chip tema" data-g="arees" data-v="Història local (Catalunya)" style="--c:#6d4f9a">Història local (Catalunya)</button><button class="chip tema" data-g="arees" data-v="Història contemporània" style="--c:#6d4f9a">Història contemporània</button><button class="chip tema" data-g="arees" data-v="Relacions internacionals" style="--c:#6d4f9a">Relacions internacionals</button><button class="chip tema" data-g="arees" data-v="Política i democràcia" style="--c:#6d4f9a">Política i democràcia</button><button class="chip tema" data-g="arees" data-v="Drets i moviments socials" style="--c:#6d4f9a">Drets i moviments socials</button><button class="chip tema" data-g="arees" data-v="Prehistòria i supervivència" style="--c:#6d4f9a">Prehistòria i supervivència</button></div>
+          <div class="asub" style="--c:#fbb908">Economia i finances</div>
+          <div class="chips"><button class="chip tema" data-g="arees" data-v="Microeconomia i mercats" style="--c:#fbb908">Microeconomia i mercats</button><button class="chip tema" data-g="arees" data-v="Política monetària" style="--c:#fbb908">Política monetària</button><button class="chip tema" data-g="arees" data-v="Finances i mercats de capitals" style="--c:#fbb908">Finances i mercats de capitals</button><button class="chip tema" data-g="arees" data-v="Economia política" style="--c:#fbb908">Economia política</button><button class="chip tema" data-g="arees" data-v="Economia industrial" style="--c:#fbb908">Economia industrial</button></div>
+          <div class="asub" style="--c:#ec6907">Empresa, gestió i operacions</div>
+          <div class="chips"><button class="chip tema" data-g="arees" data-v="Operacions i producció" style="--c:#ec6907">Operacions i producció</button><button class="chip tema" data-g="arees" data-v="Estratègia empresarial" style="--c:#ec6907">Estratègia empresarial</button><button class="chip tema" data-g="arees" data-v="Màrqueting i cadena de valor" style="--c:#ec6907">Màrqueting i cadena de valor</button><button class="chip tema" data-g="arees" data-v="Gestió sanitària" style="--c:#ec6907">Gestió sanitària</button></div>
+          <div class="asub" style="--c:#87c7a4">Ciències naturals, medi ambient i salut</div>
+          <div class="chips"><button class="chip tema" data-g="arees" data-v="Biologia, genètica i evolució" style="--c:#87c7a4">Biologia, genètica i evolució</button><button class="chip tema" data-g="arees" data-v="Clima i sostenibilitat" style="--c:#87c7a4">Clima i sostenibilitat</button><button class="chip tema" data-g="arees" data-v="Energia" style="--c:#87c7a4">Energia</button><button class="chip tema" data-g="arees" data-v="Salut" style="--c:#87c7a4">Salut</button></div>
+          <div class="asub asub-tv">Transversals</div>
+          <div class="chips"><button class="chip" data-g="arees" data-v="Ètica">Ètica</button><button class="chip" data-g="arees" data-v="Dret">Dret</button></div>
+        </div>
         <div class="fgroup"><h3>Complexitat</h3><div class="chips"><button class="chip" data-g="complexitat" data-v="Baixa">Baixa</button><button class="chip" data-g="complexitat" data-v="Mitjana">Mitjana</button><button class="chip" data-g="complexitat" data-v="Alta">Alta</button></div></div>
         <div class="fgroup"><h3>Dinàmica</h3><div class="chips"><button class="chip" data-g="dinamica" data-v="Competitiu">Competitiu</button><button class="chip" data-g="dinamica" data-v="Cooperatiu">Cooperatiu</button><button class="chip" data-g="dinamica" data-v="Semicooperatiu">Semicooperatiu</button></div></div>
         <div class="fgroup"><h3>Durada</h3><div class="chips"><button class="chip" data-g="durada" data-v="Curta">Curta (≤1 h)</button><button class="chip" data-g="durada" data-v="Mitjana">Mitjana (1–2 h)</button><button class="chip" data-g="durada" data-v="Llarga">Llarga (&gt;2 h)</button></div></div>
@@ -167,7 +184,7 @@
    <main>
      <div class="count" id="count"></div>
      <div class="grid" id="grid">
-      <a class="card" href="UB_one-pager_1714.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Semicooperatiu" data-durada="Mitjana" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_1714.html" data-arees="Història local (Catalunya)|Relacions internacionals|Ètica" data-complexitat="Mitjana" data-dinamica="Semicooperatiu" data-durada="Mitjana" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Història local (Catalunya)</div>
@@ -175,7 +192,7 @@
           <div class="cmeta">3–5 jug · 120 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_1960.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_1960.html" data-arees="Política i democràcia|Història contemporània|Màrqueting i cadena de valor|Ètica" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Política i democràcia</div>
@@ -183,7 +200,15 @@
           <div class="cmeta">2 jug · 90–120 min · Mitjana-alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Arkwright.html" data-tema="EMP" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
+      <a class="card" href="UB_one-pager_Acquire.html" data-arees="Finances i mercats de capitals|Estratègia empresarial|Microeconomia i mercats" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
+        <div class="cbar"></div>
+        <div class="cbody">
+          <div class="csub">Finances i mercats de capitals</div>
+          <div class="ctit">Acquire</div>
+          <div class="cmeta">2–6 jug · ~90 min · Mitjana</div>
+        </div>
+      </a>
+      <a class="card" href="UB_one-pager_Arkwright.html" data-arees="Economia industrial|Operacions i producció|Microeconomia i mercats" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Economia industrial</div>
@@ -191,7 +216,7 @@
           <div class="cmeta">1–4 jug · 60–100 min · Alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Automania.html" data-tema="EMP" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
+      <a class="card" href="UB_one-pager_Automania.html" data-arees="Operacions i producció|Microeconomia i mercats|Màrqueting i cadena de valor" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Operacions i producció</div>
@@ -199,7 +224,7 @@
           <div class="cmeta">2–4 jug · 60–90 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Bear-Raid.html" data-tema="ECO" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Bear-Raid.html" data-arees="Finances i mercats de capitals|Ètica" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Finances i mercats de capitals</div>
@@ -207,7 +232,15 @@
           <div class="cmeta">3–6 jug · 60-90 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Cellulose.html" data-tema="NAT" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="Sí" style="--c:#87c7a4">
+      <a class="card" href="UB_one-pager_Brass-Birmingham.html" data-arees="Economia industrial|Microeconomia i mercats|Operacions i producció|Història contemporània" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
+        <div class="cbar"></div>
+        <div class="cbody">
+          <div class="csub">Economia industrial</div>
+          <div class="ctit">Brass: Birmingham</div>
+          <div class="cmeta">2–4 jug · 60–120 min · Alta</div>
+        </div>
+      </a>
+      <a class="card" href="UB_one-pager_Cellulose.html" data-arees="Biologia, genètica i evolució" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="Sí" style="--c:#87c7a4">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Biologia cel·lular</div>
@@ -215,7 +248,7 @@
           <div class="cmeta">1–5 jug · 60–90 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Clinic.html" data-tema="EMP" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#ec6907">
+      <a class="card" href="UB_one-pager_Clinic.html" data-arees="Gestió sanitària|Operacions i producció|Salut" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#ec6907">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Gestió sanitària</div>
@@ -223,7 +256,7 @@
           <div class="cmeta">1–4 jug · 100–150 min · Molt alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_CC-Ancients.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_CC-Ancients.html" data-arees="Història militar" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Història militar (antiga)</div>
@@ -231,7 +264,7 @@
           <div class="cmeta">2 jug · ~60 min · Mitjana-baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_CC-Napoleonics.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="Sí" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_CC-Napoleonics.html" data-arees="Història militar" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="Sí" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Història militar (napoleònica)</div>
@@ -239,7 +272,7 @@
           <div class="cmeta">2 jug · ~90 min · Mitjana-alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_CO2-Second-Chance.html" data-tema="NAT" data-complexitat="Alta" data-dinamica="Semicooperatiu" data-durada="Mitjana" data-lab="Sí" style="--c:#87c7a4">
+      <a class="card" href="UB_one-pager_CO2-Second-Chance.html" data-arees="Clima i sostenibilitat|Energia|Microeconomia i mercats|Ètica" data-complexitat="Alta" data-dinamica="Semicooperatiu" data-durada="Mitjana" data-lab="Sí" style="--c:#87c7a4">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Clima i sostenibilitat</div>
@@ -247,7 +280,7 @@
           <div class="cmeta">1–4 jug · 60–120 min · Alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Daybreak.html" data-tema="NAT" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Mitjana" data-lab="No" style="--c:#87c7a4">
+      <a class="card" href="UB_one-pager_Daybreak.html" data-arees="Clima i sostenibilitat|Relacions internacionals|Salut|Ètica" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Mitjana" data-lab="No" style="--c:#87c7a4">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Clima i sostenibilitat</div>
@@ -255,7 +288,7 @@
           <div class="cmeta">1–4 jug · 75 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Electropolis.html" data-tema="NAT" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#87c7a4">
+      <a class="card" href="UB_one-pager_Electropolis.html" data-arees="Energia|Microeconomia i mercats|Ètica" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#87c7a4">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Energia</div>
@@ -263,7 +296,7 @@
           <div class="cmeta">2–4 jug · 50–70 min · Mitjana-baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Evolution.html" data-tema="NAT" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#87c7a4">
+      <a class="card" href="UB_one-pager_Evolution.html" data-arees="Biologia, genètica i evolució" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#87c7a4">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Biologia i evolució</div>
@@ -271,7 +304,7 @@
           <div class="cmeta">2–6 jug · 60 min · Baixa-mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Food-Chain-Magnate.html" data-tema="EMP" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#ec6907">
+      <a class="card" href="UB_one-pager_Food-Chain-Magnate.html" data-arees="Estratègia empresarial|Operacions i producció|Microeconomia i mercats|Màrqueting i cadena de valor" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#ec6907">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Estratègia empresarial</div>
@@ -279,7 +312,7 @@
           <div class="cmeta">2–5 jug · 120–240 min · Molt alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Freedom.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Mitjana" data-lab="Sí" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Freedom.html" data-arees="Drets i moviments socials|Història contemporània|Dret|Ètica" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Mitjana" data-lab="Sí" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Drets i moviments socials</div>
@@ -287,7 +320,7 @@
           <div class="cmeta">1–4 jug · ~90 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Genotype.html" data-tema="NAT" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#87c7a4">
+      <a class="card" href="UB_one-pager_Genotype.html" data-arees="Biologia, genètica i evolució" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#87c7a4">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Genètica</div>
@@ -295,7 +328,7 @@
           <div class="cmeta">1–5 jug · 45–90 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Hegemony.html" data-tema="ECO" data-complexitat="Alta" data-dinamica="Semicooperatiu" data-durada="Llarga" data-lab="No" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Hegemony.html" data-arees="Economia política|Política i democràcia|Dret|Ètica" data-complexitat="Alta" data-dinamica="Semicooperatiu" data-durada="Llarga" data-lab="No" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Economia política</div>
@@ -303,7 +336,7 @@
           <div class="cmeta">2–4 jug · 90–180 min · Alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Kanban-EV.html" data-tema="EMP" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
+      <a class="card" href="UB_one-pager_Kanban-EV.html" data-arees="Operacions i producció" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Operacions i producció</div>
@@ -311,7 +344,7 @@
           <div class="cmeta">1–4 jug · 90–120 min · Molt alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Magnate.html" data-tema="ECO" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Magnate.html" data-arees="Finances i mercats de capitals|Microeconomia i mercats|Ètica" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Finances i mercats de capitals</div>
@@ -319,15 +352,15 @@
           <div class="cmeta">1–5 jug · 60–120 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Memoir-44.html" data-tema="HIS" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="Sí" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Memoir-44.html" data-arees="Història militar|Història contemporània" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="Sí" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Història militar</div>
           <div class="ctit">Memoir &#x27;44</div>
-          <div class="cmeta">2 (fins a 8) jug · 30–60 min · Baixa</div>
+          <div class="cmeta">2 jug · 30–60 min · Baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Mobile-Markets.html" data-tema="EMP" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
+      <a class="card" href="UB_one-pager_Mobile-Markets.html" data-arees="Màrqueting i cadena de valor|Microeconomia i mercats" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Màrqueting i cadena de valor</div>
@@ -335,7 +368,7 @@
           <div class="cmeta">1–4 jug · 40–80 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Modern-Art.html" data-tema="ECO" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="Sí" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Modern-Art.html" data-arees="Microeconomia i mercats|Màrqueting i cadena de valor" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="Sí" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Microeconomia i mercats</div>
@@ -343,7 +376,7 @@
           <div class="cmeta">3–5 jug · 45 min · Baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Orquesta-Negra.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Mitjana" data-lab="Sí" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Orquesta-Negra.html" data-arees="Història contemporània|Ètica" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Mitjana" data-lab="Sí" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Història contemporània</div>
@@ -351,7 +384,7 @@
           <div class="cmeta">1–5 jug · 40–90 min · Mitjana-baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Paleo.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Curta" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Paleo.html" data-arees="Prehistòria i supervivència" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Curta" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Prehistòria i supervivència</div>
@@ -359,7 +392,7 @@
           <div class="cmeta">1–4 jug · 45–60 min · Mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Ponzi-Scheme.html" data-tema="ECO" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="Sí" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Ponzi-Scheme.html" data-arees="Finances i mercats de capitals|Ètica" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="Sí" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Finances i mercats de capitals</div>
@@ -367,7 +400,7 @@
           <div class="cmeta">3–5 jug · 60–90 min · Mitjana-baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Power-Grid.html" data-tema="ECO" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Power-Grid.html" data-arees="Microeconomia i mercats|Energia|Operacions i producció" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Microeconomia i mercats</div>
@@ -375,7 +408,7 @@
           <div class="cmeta">2–6 jug · ~120 min · Mitjana-alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_QE.html" data-tema="ECO" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_QE.html" data-arees="Política monetària|Microeconomia i mercats|Ètica" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Política monetària</div>
@@ -383,7 +416,7 @@
           <div class="cmeta">3–5 jug · 30–45 min · Molt baixa</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Rolling-Stock.html" data-tema="ECO" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#fbb908">
+      <a class="card" href="UB_one-pager_Rolling-Stock.html" data-arees="Finances i mercats de capitals|Estratègia empresarial" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#fbb908">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Finances i mercats de capitals</div>
@@ -391,7 +424,15 @@
           <div class="cmeta">3–5 jug · 120–240 min · Alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Twilight-Struggle.html" data-tema="HIS" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="Sí" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Smartphone-Inc.html" data-arees="Estratègia empresarial|Operacions i producció|Màrqueting i cadena de valor|Microeconomia i mercats" data-complexitat="Mitjana" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#ec6907">
+        <div class="cbar"></div>
+        <div class="cbody">
+          <div class="csub">Estratègia empresarial</div>
+          <div class="ctit">Smartphone Inc.</div>
+          <div class="cmeta">1–5 jug · 60–90 min · Mitjana</div>
+        </div>
+      </a>
+      <a class="card" href="UB_one-pager_Twilight-Struggle.html" data-arees="Relacions internacionals|Història contemporània|Ètica" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="Sí" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Relacions internacionals</div>
@@ -399,7 +440,7 @@
           <div class="cmeta">2 (o equips) jug · 120–180 min · Alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Victus.html" data-tema="HIS" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Llarga" data-lab="Sí" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Victus.html" data-arees="Història local (Catalunya)|Història militar" data-complexitat="Mitjana" data-dinamica="Cooperatiu" data-durada="Llarga" data-lab="Sí" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Història local (Catalunya)</div>
@@ -407,7 +448,7 @@
           <div class="cmeta">1–4 jug · 120–180 min · Mitjana-alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Votes-for-Women.html" data-tema="HIS" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Votes-for-Women.html" data-arees="Drets i moviments socials|Història contemporània|Dret" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Mitjana" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Drets i moviments socials</div>
@@ -415,7 +456,7 @@
           <div class="cmeta">1–4 jug · 60–90 min · Baixa-mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Watergate.html" data-tema="HIS" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Watergate.html" data-arees="Política i democràcia|Història contemporània|Dret|Ètica" data-complexitat="Baixa" data-dinamica="Competitiu" data-durada="Curta" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Política i democràcia</div>
@@ -423,7 +464,7 @@
           <div class="cmeta">2 jug · 30–60 min · Baixa-mitjana</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_Weimar.html" data-tema="HIS" data-complexitat="Alta" data-dinamica="Semicooperatiu" data-durada="Llarga" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_Weimar.html" data-arees="Política i democràcia|Història contemporània|Dret|Ètica" data-complexitat="Alta" data-dinamica="Semicooperatiu" data-durada="Llarga" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Política i democràcia</div>
@@ -431,7 +472,7 @@
           <div class="cmeta">4 (exactes) jug · ~6 h · Molt alta</div>
         </div>
       </a>
-      <a class="card" href="UB_one-pager_World-Order.html" data-tema="HIS" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#6d4f9a">
+      <a class="card" href="UB_one-pager_World-Order.html" data-arees="Relacions internacionals|Economia política" data-complexitat="Alta" data-dinamica="Competitiu" data-durada="Llarga" data-lab="No" style="--c:#6d4f9a">
         <div class="cbar"></div>
         <div class="cbody">
           <div class="csub">Relacions internacionals</div>
@@ -450,12 +491,19 @@
   var grid=document.getElementById('grid');
   var cards=[].slice.call(grid.querySelectorAll('.card'));
   var count=document.getElementById('count'), empty=document.getElementById('empty');
-  var sel={tema:new Set(),complexitat:new Set(),dinamica:new Set(),durada:new Set(),lab:new Set()};
+  var sel={arees:new Set(),complexitat:new Set(),dinamica:new Set(),durada:new Set(),lab:new Set()};
   function apply(){
     var n=0;
     cards.forEach(function(c){
       var ok=true;
-      for(var g in sel){ if(sel[g].size && !sel[g].has(c.dataset[g])){ ok=false; break; } }
+      for(var g in sel){
+        if(!sel[g].size) continue;
+        if(g==='arees'){
+          var has=(c.dataset.arees||'').split('|'), m=false;
+          sel.arees.forEach(function(v){ if(has.indexOf(v)>=0) m=true; });
+          if(!m){ ok=false; break; }
+        } else if(!sel[g].has(c.dataset[g])){ ok=false; break; }
+      }
       c.style.display=ok?'':'none'; if(ok)n++;
     });
     count.textContent=n+' jocs';
